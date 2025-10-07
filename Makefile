@@ -6,10 +6,10 @@ TARGETS = server client
 all: $(TARGETS)
 	#recipe here
 
-server: server.c
+server: server.c libft.a
 	$(CC) $(CFLAGS) -o $@ $^ -L libft -lft
 
-client: client.c
+client: client.c libft.a
 	$(CC) $(CFLAGS) -o $@ $^ -L libft -lft
 
 libft.a:
