@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 18:30:31 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/07 18:44:07 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/07 18:46:31 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
-void		ft_putchar_fd(char c, int fd);
+int			ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 int			ft_putnbr_fd(int n, int fd);
