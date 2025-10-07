@@ -6,25 +6,21 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:12:48 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/08/04 18:48:25 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/07 18:42:45 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putunbr_fd(unsigned int n, int fd)
 {
-	char	*s;
+	int	count;
 
-	if (n == -2147483648)
+	count = 0;
+	if (n >= 10)
 	{
-		ft_putstr_fd("-2147483648", fd);
-		return ;
+		count += ft_putunbr_fd(n / 10, fd);
 	}
-	else
-		s = ft_itoa(n);
-	if (!s)
-		return ;
-	ft_putstr_fd(s, fd);
-	free(s);
+	count += ft_putchar_fd((n % 10) + '0', fd);
+	return (count);
 }
