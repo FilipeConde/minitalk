@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 21:01:45 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/07/23 19:39:45 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/07 18:34:30 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,3 @@ size_t	ft_strlen(const char *s)
 	}
 	return (i);
 }
-
-/*int	main(void)
-{
-	char	string[] = "Caso";
-	int	lenght;
-	char	c_lenght;
-
-	lenght = ft_strlen(string);
-	c_lenght = lenght + '0';
-	write(1, &c_lenght, 1);
-}*/
