@@ -6,7 +6,7 @@
 #    By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/20 19:20:11 by fconde-p          #+#    #+#              #
-#    Updated: 2025/08/07 16:38:03 by fconde-p         ###   ########.fr        #
+#    Updated: 2025/10/08 20:01:00 by fconde-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,9 @@ SRCS = ft_isalpha.c \
 	ft_putstr_fd.c \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c \
+	ft_putunbr_fd \
+	ft_putulhex \
+	ft_puthex \
 
 BONUS_SRC = ft_lstnew_bonus.c \
 	ft_lstadd_front_bonus.c \
