@@ -6,19 +6,23 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 18:46:30 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/08/04 18:48:48 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/08 19:28:33 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
+	int	count;
+
+	count = 0;
 	if (!s)
-		return ;
+		return (0);
 	while (*s)
 	{
-		ft_putchar_fd(*s, fd);
+		count += ft_putchar_fd(*s, fd);
 		s++;
 	}
+	return (count);
 }
