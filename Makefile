@@ -6,13 +6,13 @@ TARGETS = server client
 all: $(TARGETS)
 	#recipe here
 
-server: server.c libft.a
-	$(CC) $(CFLAGS) -o $@ $^ -L libft -lft
+server: server.c libft/libft.a
+	$(CC) $(CFLAGS) -o $@ $^ -Llibft -lft
 
-client: client.c libft.a
-	$(CC) $(CFLAGS) -o $@ $^ -L libft -lft
+client: client.c libft/libft.a
+	$(CC) $(CFLAGS) -o $@ $^ -Llibft -lft
 
-libft.a:
+libft/libft.a:
 	make -C libft/
 
 clean:
