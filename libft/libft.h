@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 18:30:31 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/07 18:46:31 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/08 19:42:05 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 int			ft_putchar_fd(char c, int fd);
-void		ft_putstr_fd(char *s, int fd);
+int			ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 int			ft_putnbr_fd(int n, int fd);
+int			ft_putunbr_fd(unsigned int n, int fd);
+int			ft_putulhex(unsigned long nbr, char case_opt);
+int			ft_puthex(unsigned int nbr, char case_opt);
 
 t_list		*ft_lstnew(void *content);
 void		ft_lstadd_front(t_list **lst, t_list *new);
