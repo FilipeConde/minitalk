@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:35 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/13 22:38:24 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/13 22:41:56 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void)
 	pid_t				pid;
 	struct sigaction	sa;
 
-	sa.sa_handler = signal_handler;
+	sa.sa_sigaction = signal_handler;
 	sigemptyset(&sa.sa_mask); // review aproach
 	sa.sa_flags = SA_SIGINFO; // review aproach
 	// pid = 0;
