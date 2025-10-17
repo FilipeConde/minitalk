@@ -4,7 +4,6 @@ CFLAGS = -Wextra -Werror -Wall
 TARGETS = server client
 
 all: $(TARGETS)
-	#recipe here
 
 server: server.c libft/libft.a
 	$(CC) $(CFLAGS) -o $@ $^ -Llibft -lft
