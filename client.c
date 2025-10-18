@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:16:58 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/17 22:47:38 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/18 19:57:35 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	send_bin_char(int pid, char c)
 		else
 			kill(pid, SIGUSR1);
 		while(server_ready == 0)
-			sleep(1);
+			pause();
 		i++;
 	}
 }
