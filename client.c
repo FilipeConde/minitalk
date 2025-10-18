@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:16:58 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/17 19:04:52 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/17 21:41:43 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,34 @@
 
 #include <unistd.h>
 
-void	signal_handler(int signum, siginfo_t *info, void *context)
+int	server_ready;
+
+void	client_sig_handler(int signum, siginfo_t *info, void *context)
 {
+	(void)info;
 	(void)context;
 	if(signum == SIGUSR2)
 	{
-		// keep sending
-	} else if(signum == SIGUSR2)
+		server_ready = 1;
+	} else if(signum == SIGUSR1)
 	{
-		// error
+		ft_printf("SERVER ERROR!");
+		exit(1);
+	}
+}
+
+void	send_msg(int pid, char *s)
+{
+	while (*s)
+	{
+		server_ready = 0;
+		ft_printf("%c\n", *s);
+		kill(pid, SIGUSR2);
+		s++;
+		while (server_ready == 0)
+		{
+			sleep(1);
+		}
 	}
 }
 
@@ -37,7 +56,7 @@ int	main(int ac, char *av[])
 
 	i = 0;
 	pid = ft_atoi(av[1]);
-	sa.sa_sigaction = signal_handler;
+	sa.sa_sigaction = client_sig_handler;
 	sigemptyset(&sa.sa_mask); // review aproach
 	sa.sa_flags = SA_SIGINFO; // review aproach
 	// pid = 0;
@@ -48,11 +67,6 @@ int	main(int ac, char *av[])
 		return (1);
 		
 	(void)ac;
-	while (av[2])
-	{
-		kill(pid, SIGUSR2);
-		ft_printf("%c\n", av[2]);
-		av[2]++;
-	}
-
+	send_msg(pid, av[2]);
+	return (0);
 }

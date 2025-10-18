@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:35 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/17 19:05:25 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/17 20:31:41 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(void)
 {
 	pid_t				pid;
 	struct sigaction	sa;
+	int					dumb;
 
 	sa.sa_sigaction = signal_handler;
 	sigemptyset(&sa.sa_mask); // review aproach
@@ -51,8 +52,9 @@ int	main(void)
 	while(1)
 	{
 		// pause();
-		sleep(1);
+		// sleep(1);
 		// usleep(100);
+		dumb = 0;
 	}
 	return (0);
 }
