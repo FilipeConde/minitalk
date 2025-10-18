@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:35 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/17 20:31:41 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/17 22:33:08 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	signal_handler(int signum, siginfo_t *info, void *context)
 	(void)context;
 	if(signum == SIGUSR1)
 	{
-		ft_printf("%d\n", 0);
+		ft_printf("%d", 0);
 		kill(info->si_pid, SIGUSR2);
 	} else if(signum == SIGUSR2)
 	{
-		ft_printf("%d\n", 1);
+		ft_printf("%d", 1);
 		kill(info->si_pid, SIGUSR2);
 	} else
 		kill(info->si_pid, SIGUSR1);

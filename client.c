@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:16:58 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/17 21:41:43 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/17 22:47:38 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int	server_ready;
 
-void	client_sig_handler(int signum, siginfo_t *info, void *context)
+static void	client_sig_handler(int signum, siginfo_t *info, void *context)
 {
 	(void)info;
 	(void)context;
@@ -33,18 +33,23 @@ void	client_sig_handler(int signum, siginfo_t *info, void *context)
 	}
 }
 
-void	send_msg(int pid, char *s)
+static void	send_bin_char(int pid, char c)
 {
-	while (*s)
+	int	i;
+	int	bits;
+	
+	bits = 7;
+	i = 0;
+	while(i <= bits)
 	{
 		server_ready = 0;
-		ft_printf("%c\n", *s);
-		kill(pid, SIGUSR2);
-		s++;
-		while (server_ready == 0)
-		{
+		if(((c >> (bits - i)) & 1) == 1)
+			kill(pid, SIGUSR2);
+		else
+			kill(pid, SIGUSR1);
+		while(server_ready == 0)
 			sleep(1);
-		}
+		i++;
 	}
 }
 
@@ -67,6 +72,11 @@ int	main(int ac, char *av[])
 		return (1);
 		
 	(void)ac;
-	send_msg(pid, av[2]);
+	// send_msg(pid, av[2]);
+	while(*av[2])
+	{
+		send_bin_char(pid, *av[2]);
+		av[2]++;
+	}
 	return (0);
 }
