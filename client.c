@@ -6,7 +6,7 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:16:58 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/18 19:57:35 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/20 21:27:43 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include <unistd.h>
 
-int	server_ready;
+volatile sig_atomic_t	server_ready;
 
 static void	client_sig_handler(int signum, siginfo_t *info, void *context)
 {
@@ -26,6 +26,7 @@ static void	client_sig_handler(int signum, siginfo_t *info, void *context)
 	if(signum == SIGUSR2)
 	{
 		server_ready = 1;
+		// ft_printf("sig received!\n");
 	} else if(signum == SIGUSR1)
 	{
 		ft_printf("SERVER ERROR!");
@@ -44,11 +45,16 @@ static void	send_bin_char(int pid, char c)
 	{
 		server_ready = 0;
 		if(((c >> (bits - i)) & 1) == 1)
+		{
+			ft_printf("signal sent!\n");
 			kill(pid, SIGUSR2);
-		else
+		} else
+		{
+			ft_printf("signal sent!\n");
 			kill(pid, SIGUSR1);
+		}
 		while(server_ready == 0)
-			pause();
+			bits = 7;
 		i++;
 	}
 }
@@ -73,7 +79,7 @@ int	main(int ac, char *av[])
 		
 	(void)ac;
 	// send_msg(pid, av[2]);
-	while(*av[2])
+	while(*av[2] != '\0')
 	{
 		send_bin_char(pid, *av[2]);
 		av[2]++;
