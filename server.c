@@ -6,43 +6,40 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:35 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/20 21:27:53 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:07:16 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define _POSIX_C_SOURCE 200809L // review aproach
+// # define _POSIX_C_SOURCE 200809L // review aproach
 #include "libft/libft.h"
 #include <unistd.h>
 #include <signal.h>
 
-int	bit_count;
+int	g_bit_count;
 
 void	signal_handler(int signum, siginfo_t *info, void *context)
 {
-	(void)context;
 	static char	c;
 
-	if(bit_count == 0)
+	(void)context;
+	if (g_bit_count == 0)
 		c = 0;
-	if(signum == SIGUSR1)
+	if (signum == SIGUSR1)
 	{
 		c = (c << 1);
-		bit_count++;
+		g_bit_count++;
 		kill(info->si_pid, SIGUSR2);
-	} else if(signum == SIGUSR2)
+	}
+	else if (signum == SIGUSR2)
 	{
 		c = (c << 1) | 1;
-		bit_count++;
+		g_bit_count++;
 		kill(info->si_pid, SIGUSR2);
-	} else
-	{
-		kill(info->si_pid, SIGUSR1);
-		exit(1);
 	}
-	if(bit_count == 8)
+	if (g_bit_count == 8)
 	{
 		ft_printf("%c", c);
-		bit_count = 0;
+		g_bit_count = 0;
 	}
 }
 
@@ -52,26 +49,17 @@ int	main(void)
 	struct sigaction	sa;
 	int					dumb;
 
-	bit_count = 0;
+	g_bit_count = 0;
 	sa.sa_sigaction = signal_handler;
-	sigemptyset(&sa.sa_mask); // review aproach
-	sa.sa_flags = SA_SIGINFO; // review aproach
-	// pid = 0;
-
-	if(sigaction(SIGUSR1, &sa, NULL) == -1)
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
+	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		return (1);
-	if(sigaction(SIGUSR2, &sa, NULL) == -1)
+	if (sigaction(SIGUSR2, &sa, NULL) == -1)
 		return (1);
-
 	pid = getpid();
 	ft_printf("Server PID: %d\n", pid);
-
-	while(1)
-	{
-		// pause();
-		// sleep(1);
-		// usleep(100);
+	while (1)
 		dumb = 0;
-	}
 	return (0);
 }
