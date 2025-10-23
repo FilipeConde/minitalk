@@ -6,15 +6,13 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:16:58 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/21 21:01:39 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:21:08 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <signal.h>
 #include <sys/types.h>
-
-#include <unistd.h>
 
 volatile sig_atomic_t	g_server_ready;
 

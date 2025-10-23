@@ -6,18 +6,16 @@
 /*   By: fconde-p <fconde-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:35 by fconde-p          #+#    #+#             */
-/*   Updated: 2025/10/21 21:07:16 by fconde-p         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:21:09 by fconde-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// # define _POSIX_C_SOURCE 200809L // review aproach
 #include "libft/libft.h"
-#include <unistd.h>
 #include <signal.h>
 
 int	g_bit_count;
 
-void	signal_handler(int signum, siginfo_t *info, void *context)
+static void	signal_handler(int signum, siginfo_t *info, void *context)
 {
 	static char	c;
 
